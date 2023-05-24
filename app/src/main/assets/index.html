@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--  이거 안하면 사이즈가 이상하게 보인다. -->
+
+
+        <!--    부트스트랩 css 라이브러리    -->
+        <link href="./bootstrap.min.css" rel="stylesheet">
+
+        <!--  내부스크립트만들기   -->
+        <script>
+            //Native 안드로이드에서 호출한 함수 - 파라미터 값 전달
+            function setMessage( msg ){
+                document.getElementById('aa').innerHTML = msg;
+            }
+
+            //Native Android로 메세지 보내기
+            function aaa(){
+                //input 요소에 써 있는 글씨 얻어오기
+                var message = document.getElementById('in1').value;
+
+                //안드로이드의 중계인객체에게 원하는 기능 요청
+                //코틀린에서 중계인객체를 등록하면서 지정한 "Droid"라는 이름이 JS의 최상위 객체인 window의 멤버 속성으로 자동 추가됨
+                window.Droid.showMessage(message);
+
+            }
+
+            //사진 선택 앱을 여는 기능 함수
+            function bbb(){
+                //window 생략가능
+                Droid.openPhotoApp();
+            }
+
+</script>
+
+    </head>
+    <body>
+        <h5 class="mt-5">Native Android로 부터 받은 메세지 </h5>
+        <h6 id="aa">Wait~ </h6>
+
+        <h5>Native Android로 보낼 메세지 입력 </h5>
+        <input class="form-control mt-3" type="text" id="in1" placeholder="메세지 입력">
+
+        <div class="d-grid gap-2">
+            <button class="btn btn-primary btn-block mt-3" onclick="aaa()">send message to native android</button>
+            <button class="btn btn-success btn-block mt-2" onclick="bbb()">open Gallery</button>
+        </div>
+
+    </body>
+</html>
